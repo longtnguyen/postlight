@@ -6,9 +6,6 @@ export const MainMenu = () => {
       <Link to="/">
         <button>Home</button>
       </Link>
-      <Link to="/Search">
-        <button>Search</button>
-      </Link>
       <Link to="/Department">
         <button>Department</button>
       </Link>

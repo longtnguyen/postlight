@@ -1,6 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Home } from './Home';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Search } from './Search';
 import { Location } from './Location';
 import { Department } from './Department';
@@ -15,7 +14,7 @@ export const App = () => {
             <MainMenu/>
         </header>
         <div>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Search} />
           <Route exact path="/search" component={Search} />
           <Route exact path="/location" component={Location} />
           <Route exact path="/department" component={Department} />
