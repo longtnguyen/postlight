@@ -1,4 +1,5 @@
 import { get } from 'lodash';
+import axios from 'axios';
 export const transform = (arr) => {
   return arr.map((data) => {
     return {
@@ -19,4 +20,23 @@ export const transform = (arr) => {
       uuid: get(data, 'login.uuid', '')
     }
   })
+}
+
+export const getAllData = () => {
+  let cache;
+  if(window && window.sessionStorage) {
+    cache = window.sessionStorage.getItem('cache');
+  }
+  if(cache) {
+    return cache;
+  } else {
+    axios.get('https://rlyke4qgza.execute-api.us-east-1.amazonaws.com/dev/')
+    .then((response) => {
+      window.sessionStorage.setItem('cache', response);
+      return response
+    })
+    .catch((err)=> {
+      console.log(err);
+    })
+  }
 }
