@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
 import { 
   Table,
@@ -83,8 +84,9 @@ TablePaginationActions.propTypes = {
 };
 
 export default function PaginatedTable({ data }) {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  let history = useHistory();
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
@@ -96,22 +98,22 @@ export default function PaginatedTable({ data }) {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
+  const handleOnclick = (row) => {
+    history.push('/employee', { ...row })
+  }
   return (
     <Paper>
       <div>
         <Table aria-label="custom pagination table">
           <TableBody>
             {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
-              <TableRow key={row.uuid}>
+              <TableRow key={row.uuid} onClick={() => handleOnclick(row)}>
                 <TableCell align="left">{<img src={row.pictureThumb}/>}</TableCell>
-                <TableCell align="left">{row.title}</TableCell>
-                <TableCell align="left">{row.firstName}</TableCell>
-                <TableCell align="left">{row.lastName}</TableCell>
+                <TableCell align="left">{`${row.title} ${row.firstName} ${row.lastName}`}</TableCell>
                 <TableCell align="left">{row.email}</TableCell>
+                <TableCell align="left">{row.phone}</TableCell>
                 <TableCell align="left">{row.address}</TableCell>
-                <TableCell align="left">{row.city}</TableCell>
-                <TableCell align="left">{row.state}</TableCell>
+                <TableCell align="left">{`${row.city}, ${row.state}`}</TableCell>
                 <TableCell align="left">{row.timezone}</TableCell>
                 <TableCell align="left">{row.gender}</TableCell>
               </TableRow>
@@ -126,7 +128,7 @@ export default function PaginatedTable({ data }) {
           <TableFooter>
             <TableRow>
               <TablePagination
-                rowsPerPageOptions={[5, 25, 100]}
+                rowsPerPageOptions={[10, 25, 100]}
                 colSpan={3}
                 count={data.length}
                 rowsPerPage={rowsPerPage}
