@@ -18,10 +18,12 @@ describe('render', () => {
     const title = wrapper.find('h1.App-title');
     expect(title.length).toEqual(1);
   });
-  it('should render 5 routes', () => {
-    const routes = wrapper.find('Route');
-    expect(routes.length).toEqual(5);
-
+  it('should render 4 tabs', () => {
+    const routes = wrapper.find('Tab');
+    expect(routes.length).toEqual(4);
   });
-
+  it('should render 4 routes', () => {
+    const routes = wrapper.find('Route');
+    expect(routes.length).toEqual(4);
+  });
 })
