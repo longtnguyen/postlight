@@ -114,7 +114,6 @@ export default function PaginatedTable({ data }) {
                 <TableCell align="left">{row.phone}</TableCell>
                 <TableCell align="left">{row.address}</TableCell>
                 <TableCell align="left">{`${row.city}, ${row.state}`}</TableCell>
-                <TableCell align="left">{row.timezone}</TableCell>
                 <TableCell align="left">{row.gender}</TableCell>
               </TableRow>
             ))}

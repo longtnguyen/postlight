@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom';
 import { Tabs, Tab } from '@material-ui/core';
-import { Search } from './Search';
 import { Browse } from './Browse';
 import Location from './Location';
 import { Employee } from './shared/Employee';
+import { Edit } from './shared/Edit';
 import { Random } from './Random';
 export const App = () => {
   return (
@@ -16,18 +16,18 @@ export const App = () => {
             render={({ location }) => (
               <>
                 <Tabs value={location.pathname}>
-                  <Tab label="Search" value="/" component={Link} to="/" />
-                  <Tab label="Browse" value="/browse" component={Link} to="/browse" />
+                  <Tab label="Browse" value="/" component={Link} to="/" />
                   <Tab label="Location" value="/location" component={Link} to="/location" />
                   <Tab label="Random" value="/random" component={Link} to="/random" />
                   <Tab label="Employee Detail" value="/employee" component={Link} to="/employee" />
+                  <Tab label="Create/Edit" value="/edit" component={Link} to="/edit" />
                 </Tabs>
                 <Switch>
-                  <Route exact path="/" component={Search} />
-                  <Route exact path="/browse" component={Browse} />
+                  <Route exact path="/" component={Browse} />
                   <Route exact path="/location" component={Location} />
                   <Route exact path="/random" component={Random} />
                   <Route exact path="/employee" component={Employee} />
+                  <Route exact path="/edit" component={Edit} />
                   <Redirect from="*" to="/" />
                 </Switch>
               </>

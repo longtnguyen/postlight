@@ -11,7 +11,7 @@ export const Random = () => {
   }
   return (
     <div>
-      <Button onClick={handleOnclick}>Randomize</Button>
+      <Button onClick={handleOnclick} color="secondary">Randomize</Button>
       {currentEmployee && <Employee data={currentEmployee} />}
     </div>
   )

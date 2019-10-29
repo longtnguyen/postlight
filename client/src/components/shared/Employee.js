@@ -31,6 +31,9 @@ export const Employee = (employee) => {
   const handleClick = () => {
     history.goBack()
   }
+  const handleEdit = () => {
+    history.push('/edit', state || employee.data)
+  }
   const state = get(employee, 'location.state')
   // Different way to use this module requires this
   const employeeDetail = state || employee.data || {};
@@ -42,6 +45,7 @@ export const Employee = (employee) => {
   return (
     <div className={classes.root}>
       {state && <Button onClick={handleClick}>Go Back</Button>}
+      <Button onClick={handleEdit}>Edit Employee</Button>
       <Grid container
         spacing={3}
         direction="row"
