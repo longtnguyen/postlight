@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
 import { 
   Table,
+  TableHead,
   TableBody,
   TableCell,
   TableFooter,
@@ -105,6 +106,17 @@ export default function PaginatedTable({ data }) {
     <Paper>
       <div>
         <Table aria-label="custom pagination table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="left">Thumbnail</TableCell>
+              <TableCell align="left">Name</TableCell>
+              <TableCell align="left">Email</TableCell>
+              <TableCell align="left">Phone</TableCell>
+              <TableCell align="left">Address</TableCell>
+              <TableCell align="left">City and State</TableCell>
+              <TableCell align="left">Gender</TableCell>
+            </TableRow>
+          </TableHead>
           <TableBody>
             {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
               <TableRow key={row.uuid} onClick={() => handleOnclick(row)}>

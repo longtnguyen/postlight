@@ -63,10 +63,14 @@ export const Edit = (employee) => {
   const handleSave = () => {
     axios.post('https://rlyke4qgza.execute-api.us-east-1.amazonaws.com/dev',
       {table: 'employee-directory', data: employeeInfo})
-      .then(function (response) {
-        console.log(response);
+      .then( (response) => {
+        axios.get('https://rlyke4qgza.execute-api.us-east-1.amazonaws.com/dev')
+          .then((res) => {
+            window.sessionStorage.clear()
+            window.sessionStorage.setItem('cache', JSON.stringify(res.data))
+          })
       })
-      .catch(function (error) {
+      .catch( (error) => {
         console.log(error);
       });
 
